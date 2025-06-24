@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .app-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        .products-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s ease-in-out;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        }
+        .product-card img {
+            max-width: 100%;
+            height: 180px; /* Fixed height for product images */
+            object-fit: contain; /* Ensures images fit without cropping and maintain aspect ratio */
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .product-name {
+            font-weight: bold;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+            color: #34495e;
+            flex-grow: 1; /* Allows name to take up available space */
+        }
+        .product-price {
+            color: #e74c3c;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .product-rating {
+            color: #f39c12; /* Star color */
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+        .product-rating span {
+            color: #666;
+            margin-left: 5px;
+        }
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .add-to-cart-btn, .wishlist-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            text-decoration: none; /* For wishlist link */
+            text-align: center;
+        }
+        .add-to-cart-btn {
+            background-color: #3498db;
+            color: white;
+            transition: background-color 0.2s ease;
+        }
+        .add-to-cart-btn:hover {
+            background-color: #2980b9;
+        }
+        .wishlist-btn {
+            background-color: #f8f8f8;
+            color: #555;
+            border: 1px solid #ccc;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .wishlist-btn:hover {
+            background-color: #eee;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="app-title">E-commerce App</h1>
+
+    <div class="products-container">
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh0M8-PAbCnYbvaJcuQ5LceVYIirDXpzDwfQ&s" alt="Essence Mascara Lash Princess">
+            <div class="product-name">Essence Mascara Lash Princess</div>
+            <div class="product-price">$9.99</div>
+            <div class="product-rating">★★★★☆ <span>2.56</span></div>
+            <div class="buttons-container">
+                <button class="add-to-cart-btn" onclick="addToCart('Essence Mascara')">Add to Cart</button>
+                <a href="#" class="wishlist-btn">Wishlist</a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://m.media-amazon.com/images/I/81sWsK-7vGL._UF1000,1000_QL80_.jpg" alt="Eyeshadow Palette with Mirror">
+            <div class="product-name">Eyeshadow Palette with Mirror</div>
+            <div class="product-price">$19.99</div>
+            <div class="product-rating">★★★★☆ <span>2.86</span></div>
+            <div class="buttons-container">
+                <button class="add-to-cart-btn" onclick="addToCart('Eyeshadow Palette')">Add to Cart</button>
+                <a href="#" class="wishlist-btn">Wishlist</a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhBEr_0NnfLRJk3VRU-D19yszLuvEpnjb73A&s">
+            <div class="product-name">Powder Canister</div>
+            <div class="product-price">$14.99</div>
+            <div class="product-rating">★★★★☆ <span>4.64</span></div>
+            <div class="buttons-container">
+                <button class="add-to-cart-btn" onclick="addToCart('Powder Canister')">Add to Cart</button>
+                <a href="#" class="wishlist-btn">Wishlist</a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7yZv3IgyzQY75VMQbI6HQpsYHWHAKRwfBKQ&s" alt="Red Lipstick">
+            <div class="product-name">Red Lipstick</div>
+            <div class="product-price">$12.99</div>
+            <div class="product-rating">★★★★☆ <span>4.36</span></div>
+            <div class="buttons-container">
+                <button class="add-to-cart-btn" onclick="addToCart('Red Lipstick')">Add to Cart</button>
+                <a href="#" class="wishlist-btn">Wishlist</a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://www.mifashion.in/cdn/shop/products/p_d0784f47-3261-43a5-9c64-eed0d4ecd6af.jpg?v=1679913442" alt="Red Nail Polish">
+            <div class="product-name">Red Nail Polish</div>
+            <div class="product-price">$8.99</div>
+            <div class="product-rating">★★★★☆ <span>4.32</span></div>
+            <div class="buttons-container">
+                <button class="add-to-cart-btn" onclick="addToCart('Red Nail Polish')">Add to Cart</button>
+                <a href="#" class="wishlist-btn">Wishlist</a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSch3TChIPmQbCfMSWqU3a5UjJBoI9lImB2Ag&s" alt="Calvin Klein CK One">
+            <div class="product-name">Calvin Klein CK One</div>
+            <div class="product-price">$49.99</div>
+            <div class="product-rating">★★★★☆ <span>4.37</span></div>
+            <div class="buttons-container">
+                <button class="add-to-cart-btn" onclick="addToCart('Calvin Klein CK One')">Add to Cart</button>
+                <a href="#" class="wishlist-btn">Wishlist</a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://www.chanel.com/images//t_one/t_fragrance//q_auto:good,f_auto,fl_lossy,dpr_1.1/w_1920/coco-noir-eau-de-parfum-spray-3-4fl-oz--packshot-default-113660-9564891283486.jpg" alt="Chanel Coco Noir Eau De">
+            <div class="product-name">Chanel Coco Noir Eau De</div>
+            <div class="product-price">$129.99</div>
+            <div class="product-rating">★★★★★ <span>4.26</span></div>
+            <div class="buttons-container">
+                <button class="add-to-cart-btn" onclick="addToCart('Chanel Coco Noir')">Add to Cart</button>
+                <a href="#" class="wishlist-btn">Wishlist</a>
+            </div>
+        </div>
+
+        <div class="product-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_qH7tJDxp48eC5VvQEXyKTTocfMf442gH5w&s" alt="Dior J'adore">
+            <div class="product-name">Dior J'adore</div>
+            <div class="product-price">$89.99</div>
+            <div class="product-rating">★★★★★ <span>3.8</span></div>
+            <div class="buttons-container">
+                <button class="add-to-cart-btn" onclick="addToCart('Dior J\'adore')">Add to Cart</button>
+                <a href="#" class="wishlist-btn">Wishlist</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(productName) {
+            alert(productName + " has been added to your cart!");
+            // In a real application, you would add logic here to update a cart object,
+            // send data to a server, or update local storage.
+        }
+    </script>
+</body>
+</html>
